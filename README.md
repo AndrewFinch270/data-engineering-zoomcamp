@@ -2,6 +2,7 @@
 Workshop Codespaces
 
 SQL Code for homework questions week 1
+
 		/*Total trips with distance less than or equal to one mile.*/
 		SELECT
 			count(1)
@@ -59,6 +60,7 @@ SQL Code for homework questions week 1
 			max_tip desc
 
 SQL Code for homework questions week 2
+
 		/*Select row count for yellow taxi data for all csv files in 2020.*/
 		SELECT 
 			count(1) 
