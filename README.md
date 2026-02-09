@@ -84,3 +84,61 @@ SQL Code for homework questions week 2
 			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata` 
 		WHERE 
 			filename like '%2021-03%'
+
+SQL Code for homework questions week 3
+
+		SELECT 
+			count(1) 
+		FROM 
+			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_non_partitioned`
+
+		SELECT 
+			distinct count(PULocationID) 
+		FROM 
+			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_non_partitioned`
+
+		SELECT 
+			distinct count(PULocationID)
+		FROM 
+			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.external_yellow_tripdata`
+
+		select 
+			PULocationID 
+		FROM 
+		`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_non_partitioned`
+
+		select 
+			PULocationID, DOLocationID 
+		FROM 
+			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_non_partitioned`
+
+		select 
+			count(1) 
+		FROM 
+			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_non_partitioned` 
+		WHERE 
+			fare_amount = 0
+
+		CREATE OR REPLACE TABLE dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_partitioned
+		PARTITION BY DATE(tpep_dropoff_datetime)
+		CLUSTER BY VendorID AS
+		SELECT * FROM `dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.external_yellow_tripdata`
+
+		SELECT
+			DISTINCT VendorID
+		FROM
+			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_non_partitioned`
+		WHERE
+			tpep_dropoff_datetime >= '2024-03-01' AND tpep_dropoff_datetime < '2024-03-16';
+
+		SELECT
+			DISTINCT VendorID
+		FROM
+			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_partitioned`
+		WHERE
+			tpep_dropoff_datetime >= '2024-03-01' AND tpep_dropoff_datetime < '2024-03-16';
+
+		SELECT 
+			count(*) 
+		FROM 
+			`dtc-de-zoomcamp-486023.dtcdezoomcamp486023_zoomcamp_dataset.yellow_tripdata_partitioned`
